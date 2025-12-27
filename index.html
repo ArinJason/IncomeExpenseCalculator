@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Income Expense Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Income Expense Calculator</h1>
+    <p class="sub">Track your cash flow, edit entries, and stay in control.</p>
+  </header>
+
+  <main class="container">
+    <!-- Summary -->
+    <section class="summary" aria-label="Summary totals">
+      <div class="card">
+        <span class="label">Total income</span>
+        <span id="totalIncome" class="value positive">₹0</span>
+      </div>
+      <div class="card">
+        <span class="label">Total expenses</span>
+        <span id="totalExpense" class="value negative">₹0</span>
+      </div>
+      <div class="card">
+        <span class="label">Net balance</span>
+        <span id="netBalance" class="value">₹0</span>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="form-section" aria-label="Add entry">
+      <form id="entryForm" class="form" autocomplete="off">
+        <div class="form-row">
+          <label for="type" class="sr-only">Type</label>
+          <div class="type-toggle" role="group" aria-label="Type selection">
+            <input type="radio" id="type-income" name="type" value="income" checked />
+            <label for="type-income">Income</label>
+
+            <input type="radio" id="type-expense" name="type" value="expense" />
+            <label for="type-expense">Expense</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="description">Description</label>
+          <input
+            id="description"
+            name="description"
+            type="text"
+            placeholder="e.g., Salary, Groceries"
+            required
+            maxlength="60"
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="amount">Amount (₹)</label>
+          <input
+            id="amount"
+            name="amount"
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="e.g., 2500"
+            required
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Add entry</button>
+          <button type="button" id="resetBtn" class="btn">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters" aria-label="Filters">
+      <div class="filter-group">
+        <span class="filter-label">Filter:</span>
+        <input type="radio" id="filter-all" name="filter" value="all" checked />
+        <label for="filter-all">All</label>
+
+        <input type="radio" id="filter-income" name="filter" value="income" />
+        <label for="filter-income">Income</label>
+
+        <input type="radio" id="filter-expense" name="filter" value="expense" />
+        <label for="filter-expense">Expense</label>
+      </div>
+    </section>
+
+    <!-- List -->
+    <section class="list-section" aria-label="Entries">
+      <ul id="entryList" class="entry-list" aria-live="polite"></ul>
+      <p id="emptyState" class="empty">No entries yet. Add one above.</p>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <small>Open-source assessment project. Do not include any company names.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
